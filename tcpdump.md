@@ -4,6 +4,8 @@
 ```
 # General Syntax
 tcpdump [options] [expression]
+
+https://www.comparitech.com/net-admin/tcpdump-cheat-sheet/
 ```
 
 ---
