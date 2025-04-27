@@ -5,7 +5,7 @@
 tcpdump [options] [expression]
 
 
-🔗 [Comparitech TCPDump Cheat Sheet](https://www.comparitech.com/net-admin/tcpdump-cheat-sheet/)
+[Comparitech TCPDump Cheat Sheet](https://www.comparitech.com/net-admin/tcpdump-cheat-sheet/)
 
 
 ### Common Options
