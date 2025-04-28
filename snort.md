@@ -19,6 +19,8 @@
 | `snort -q`                               | Run Snort quietly (no startup banner)              |
 
 [Official Snort Documentation](https://www.snort.org/documents)
+[Manual](http://manual-snort-org.s3-website-us-east-1.amazonaws.com/)
+[Snorpy](https://snorpy.cyb3rs3c.net/)
 
 ---
 
@@ -52,3 +54,29 @@
 - **Combine flags** like `-vde` for rich packet views when sniffing.
 
 ---
+
+## Running Snort as IDS/ IPS
+
+| Command                                               | Description                                         |
+|--------------------------------------------------------|-----------------------------------------------------|
+| `snort -c [config file]`                             | Point to config/ rule file               |
+| `snort -c [config file] -T`                 | Test the config file                   |
+| `snort -N `                                  | Disble logging                    |
+| `snort -D `                                       | Background mode         |
+| `snort -A 'full/fast/console/cmg/none'`| Alert mode             |
+
+- full/fast mode doesn't generate alerts on console. console for limited info on console and cmg for hex output.
+- kill background snort job- kill -9 2898
+
+## Read from a PCAP file
+
+| Command                                               | Description                                         |
+|--------------------------------------------------------|-----------------------------------------------------|
+| `snort -r [pcap file]`                             | Point to pcap file               |
+| `snort -r --pcap-list="file1 file2"`                 | multiple pcaps                   |
+| `--pcap-show `                                  | show on console which pcap it's reading                    |
+
+## Rule Structure and example rule
+
+- action protocol src_ip src_port direction dst_ip dst_port (msg; sid; rev; reference; content; nocase; fast_pattern; sameip; id; flags; dsize)
+- alert tcp any any <> any any (MSG: "detect all"; SID: 1000001; REV:1)
