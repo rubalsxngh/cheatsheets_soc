@@ -13,7 +13,7 @@ Zeek is a **passive, open-source network traffic analyzer** focused on **network
 
 **Output**: Zeek generates **50+ log files** grouped into **7 major categories**.  
 
-[Zeek_Frameworks](zeek frameworks- https://docs.zeek.org/en/master/frameworks/index.html)
+[Frameworks](https://docs.zeek.org/en/master/frameworks/index.html)
 [Zeek Log Files Reference](https://docs.zeek.org/en/current/script-reference/log-files.html)
 [Zeek Signature Framework](https://docs.zeek.org/en/master/frameworks/signatures.html)
 
@@ -73,13 +73,12 @@ Zeek is a **passive, open-source network traffic analyzer** focused on **network
 
 | Type     | Filter Examples                          |
 |----------|-------------------------------------------|
-| **Header** | `src-ip`, `dst-ip`, `src-port`, `dst-port`, `ip-proto` |
-| **Content**| `payload`, `http-request`, `http-reply-body`, `ftp`    |
-| **Context**| `same-ip` (same src and dst IP)         |
-| **Action** | `event` (trigger custom event/message)  |
-
-**Comparison Operators**: `==`, `!=`, `<`, `<=`, `>`, `>=`  
-**Value Types**: string, numeric, regex
+| Header | `src-ip`, `dst-ip`, `src-port`, `dst-port`, `ip-proto` |
+| Content | `payload`, `http-request`, `http-reply-body`, `ftp`    |
+| Context | `same-ip` (same src and dst IP)         |
+| Action | `event` (trigger custom event/message)  |
+| Comparison Operators |  `==`, `!=`, `<`, `<=`, `>`, `>=` | 
+| NOTE! | Value Types: string, numeric, regex |
 
 ---
 
