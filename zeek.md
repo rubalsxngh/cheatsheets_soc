@@ -16,6 +16,8 @@ Zeek is a **passive, open-source network traffic analyzer** focused on **network
 [Frameworks](https://docs.zeek.org/en/master/frameworks/index.html)
 [Zeek Log Files Reference](https://docs.zeek.org/en/current/script-reference/log-files.html)
 [Zeek Signature Framework](https://docs.zeek.org/en/master/frameworks/signatures.html)
+[Zeek_Scripting_language](https://try.bro.org/#/?example=hello)
+[Zeek_Scripts_repo](https://docs.zeek.org/en/master/script-reference/scripts.html)
 
 
 ---
@@ -91,3 +93,21 @@ signature my-first-sig {
     payload /.*root/
     event "Found root!"
 }
+```
+
+---
+
+## Zeek Scripts
+
+Powerful high level language for detections and correlations, .zeek files
+
+| Type     | Filter Examples                          |
+|----------|-------------------------------------------|
+| base scripts | /opt/zeek/share/zeek/base             |
+| user generated or modified scripts | /opt/zeek/share/zeek/site |
+| policy related                     | /opt/zeek/share/zeek/policy |
+| configuration file                 | /opt/zeek/share/zeek/site/local.zeek |
+
+
+- @load /path/to/script in live env.
+
