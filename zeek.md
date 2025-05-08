@@ -18,6 +18,8 @@ Zeek is a **passive, open-source network traffic analyzer** focused on **network
 [Zeek Signature Framework](https://docs.zeek.org/en/master/frameworks/signatures.html)
 [Zeek_Scripting_language](https://try.bro.org/#/?example=hello)
 [Zeek_Scripts_repo](https://docs.zeek.org/en/master/script-reference/scripts.html)
+[Zeek_Events](https://docs.zeek.org/en/master/scripts/base/bif/event.bif.zeek.html)
+[Zeek_Frameworks](https://packages.zeek.org/)
 
 
 ---
@@ -110,4 +112,37 @@ Powerful high level language for detections and correlations, .zeek files
 
 
 - @load /path/to/script in live env.
+
+- zeek scripts blueprint:
+``` event event_name {
+  action
+}
+```
+
+## Zeek Scripts examples
+
+```
+event new_connection(c: Connection) {
+  print("new connection found");
+  print("Source host %s # %s", c$id$orig_h, c$id$orig_p);
+}
+```
+---
+
+## Zeek Framework ZKG
+
+- used to install third party scripts and plugins
+- zeek -Cr /path/to/pcap zeek_framework
+
+| Type     | Filter Examples                          |
+|----------|-------------------------------------------|
+| zkg install path/to/plugin | Install thirds party plugins |
+| zkg install /github/link | Install github link |
+| zkg list                 | List all the installed packages |
+| zkg remove               | Removed installed packages      |
+| zkg refresh              | check version updates           | 
+| zeek upgrade             | upgrade installed packages      |
+
+---
+
 
