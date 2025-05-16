@@ -1,4 +1,4 @@
-# 🧪 Wireshark Cheatsheet for Blue Team Analysts
+# Wireshark Cheatsheet for Blue Team Analysts
 
 Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analysis**, and **protocol inspection**.
 
