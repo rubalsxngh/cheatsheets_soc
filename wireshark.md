@@ -127,3 +127,30 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 - [Wireshark Filtering Expressions](https://wiki.wireshark.org/DisplayFilters)
 
 ---
+
+## Wireshark analysis on different attacks
+
+## Nmap
+
+| Type       | Function |
+|------------|----------|
+| TCP Connect     | tcp.flags.syn==1 && tcp.flags.ack==1 && tcp.window_size>1024 |
+| Syn attack    | tcp.flags.syn==1 and tcp.flags.ack==0 and tcp.window_size <= 1024 |
+| UDP Scan closed port output | icmp.type==3 and icmp.code==3                       |
+| UDP Scan for open ports     | udp && udp.port==80 |
+
+## ARP Poising/Spoofing
+
+- ARP posing is messing with default gateways( switch) CAM address table.
+
+| Type       | Function |
+|------------|----------|
+| ARP request      | arp.opcode==1 |
+| ARP response   | arp.opcode==2 |
+| ARP Scanning | arp.dst.hw_mac==00:00:00:00:00:00                      |
+| Detecting ARP Poising attack    | arp.duplicate-address-detected or arp.duplicate-address-frame |
+| ARP flooding to avoid detection | ((arp) && (arp.opcode == 1)) && (arp.src.hw_mac == target-mac-address) |
+
+
+
+
