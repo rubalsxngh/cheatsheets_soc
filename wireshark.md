@@ -152,5 +152,42 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 | ARP flooding to avoid detection | ((arp) && (arp.opcode == 1)) && (arp.src.hw_mac == target-mac-address) |
 
 
+## DHCP, NetBios and Kerberos
+
+
+| Type       | Function |
+|------------|----------|
+| DHCP Request     | dhcp.option.dhcp==3 |
+| DHCP ACK     | dhcp.option.dhcp==5 |
+| DHCP NAK     | dhcp.option.dhcp==6                    |
+| DHCP hostname discover    |     dhcp.option.hostname contains "keyword" |
+| DHCP domain name discover | dhcp.option.domain_name contains "keyword" |
+| NetBios name discover     | nbns.name contains "keyword"               |
+| Hostname discover in kerberos | kerberos.CNameString contains "keyword" |
+| only usernmae search hostname ends with $ | kerberos.CNameString and !(kerberos.CNameString contains "$" ) |
+| Kerberos protcol version                  | kerberos.pvno == 5 |
+| domain name of generated ticket           |     kerberos.realm contains ".org" |
+| service name and domain of generated ticket | kerberos.SNameString == "krbtg"  | 
+
+
+- grab low hanging fruits DHCP request
+
+    Option 12: Hostname.
+    Option 50: Requested IP address.
+    Option 51: Requested IP lease time.
+    Option 61: Client's MAC address.
+
+- grab low hanging fruits DHCP ACK
+
+    Option 15: Domain name.
+    Option 51: Assigned IP lease time.
+
+- grab low hanging fruits NetBios
+
+    Queries: Query details.
+    Query details could contain "name, Time to live (TTL) and IP address details"
+
+
+
 
 
