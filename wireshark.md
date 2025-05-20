@@ -16,6 +16,14 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 
 ---
 
+## Resources
+
+- [Wireshark Display Filter Reference](https://www.wireshark.org/docs/dfref/)
+- [Wireshark Capture Filters](https://wiki.wireshark.org/CaptureFilters)
+- [Wireshark Filtering Expressions](https://wiki.wireshark.org/DisplayFilters)
+
+---
+
 ## IP Filters (Display)
 
 | Filter                            | Description                                         |
@@ -120,14 +128,6 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 
 ---
 
-## Resources
-
-- [Wireshark Display Filter Reference](https://www.wireshark.org/docs/dfref/)
-- [Wireshark Capture Filters](https://wiki.wireshark.org/CaptureFilters)
-- [Wireshark Filtering Expressions](https://wiki.wireshark.org/DisplayFilters)
-
----
-
 ## Wireshark analysis on different attacks
 
 ## Nmap
@@ -171,8 +171,6 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 
 
 - grab low hanging fruits DHCP request
-
-    Option 12: Hostname.
     Option 50: Requested IP address.
     Option 51: Requested IP lease time.
     Option 61: Client's MAC address.
@@ -189,5 +187,37 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 
 
 
+## ICMP and DNS
+
+| Type       | Function |
+|------------|----------|
+| Check for ICMP tunnels     | data.len > 64 and icmp |
+| Check for abnormal strings | dns contains "dnscat   |
+| Check for dns tunnels      | dns.qry.name.len > 15 and !mdns |
 
 
+## FTP
+- read FTP response codes
+
+| Type       | Function |
+|------------|----------|
+| FTP Reponse code    | ftp.response.code==200 |
+| check for spefic user login | ftp.request.command == "USER" |
+| Brute via common username   | (ftp.response.code == 530) and (ftp.response.arg contains "username") |
+| Brute via static password   | (ftp.request.command == "PASS" ) and (ftp.request.arg == "password")  |
+
+
+## HTTP and HTTP2
+- read HTTP response code
+- for http2 analysis, keylog file is needed, need to setup env variable for dumping keys
+- add in wireshark, edit-> preference-> protocols-> tls-> add the keylogger file
+
+| Type       | Function |
+|------------|----------|
+| HTTP response    | http.response.code==200 |
+| Request method   | http.request.method=="GET/POST" |
+| User agent, can find attacker tools | http.user_agent contains "nmap" |
+| URL, can find a C2                  | http.request.uri contains "admin" |
+| hostname                            | http.host contains "keyword"      |
+| log4J                               | (http.user_agent contains "$") or (http.user_agent contains "==")  |
+| client hello                        | (http.request or tls.handshake.type == 1) and !(ssdp)              |
