@@ -11,8 +11,8 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 | **Capture Filter** | Applies while **capturing traffic** (e.g., `tcp port 80`) |
 | **Display Filter** | Applies when **viewing/analyzing packets** (e.g., `http`)  |
 
-🔹 **Capture filters** use **libpcap syntax** (like TCPDump)  
-🔹 **Display filters** use **Wireshark's own syntax**
+**Capture filters** use **libpcap syntax** (like TCPDump)  
+**Display filters** use **Wireshark's own syntax**
 
 ---
 
@@ -34,8 +34,8 @@ Wireshark is a GUI-based packet analyzer used for **live capture**, **PCAP analy
 | `ip.src == 10.10.10.111`          | Packets **from** IP 10.10.10.111                   |
 | `ip.dst == 10.10.10.111`          | Packets **to** IP 10.10.10.111                     |
 
-🔹 `ip.addr` matches **either direction**  
-🔹 `ip.src` and `ip.dst` match by **direction**
+`ip.addr` matches **either direction**  
+`ip.src` and `ip.dst` match by **direction**
 
 ---
 
