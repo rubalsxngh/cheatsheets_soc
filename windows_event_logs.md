@@ -52,17 +52,17 @@
 
 [Get-WinEvent](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.diagnostics/get-winevent?view=powershell-5.1)
 
-| Command      | Usage                                              |
-|------------------|----------------------------------------|
-| Get-WinEvent -ListLog *          | List all of the logs   |
-| Get-WinEvent -ListProviders *    | List all the providers |
-| "Get-WinEvent -ListLog Setup | Format-List -Property *" | get the properties of log file |
-| (Get-WinEvent -ListLog Application).ProviderNames       | all the application log providers |
-| "(Get-WinEvent -ListProvider Microsoft-Windows-GroupPolicy).Events | Format-Table Id, Description" | event IDS of providers |
-| Get-WinEvent -Path /log/path | Get the logs from evtx file |
-| Get-WinEvent -Path /log/ | Measure-Object | No of events in evtx file |
-| "Get-WinVEent -Path /log/ | Select-Object ExpandProperty ID | Sort-Object | Get-Unique" | Get the unique event IDs |
-| "Get-WinEvent -Path /log/ | Group-Object ID" | group by event ID |
+| Command | Description |
+|--------|-------------|
+| `Get-WinEvent -ListLog *` | List all event logs on the system |
+| `Get-WinEvent -ListProvider *` | List all event log providers |
+| `Get-WinEvent -ListLog Setup \| Format-List -Property *` | Get all properties of the "Setup" event log |
+| `(Get-WinEvent -ListLog Application).ProviderNames` | List all providers associated with the "Application" log |
+| `(Get-WinEvent -ListProvider 'Microsoft-Windows-GroupPolicy').Events \| Format-Table Id, Description` | Display event IDs and descriptions for a specific provider |
+| `Get-WinEvent -Path "C:\path\to\log.evtx"` | Read and display logs from an EVTX file |
+| `Get-WinEvent -Path "C:\path\to\log.evtx" \| Measure-Object` | Count the number of events in the EVTX file |
+| `Get-WinEvent -Path "C:\path\to\log.evtx" \| Select-Object -ExpandProperty Id \| Sort-Object \| Get-Unique` | Get a list of unique event IDs |
+| `Get-WinEvent -Path "C:\path\to\log.evtx" \| Group-Object Id` | Group events by ID and show count per ID |
 
 
 
@@ -78,10 +78,11 @@ Get-WinEvent -FilterHashtable @{
 
 - FilterXPath example
 
-| Command      | Usage                                              |
-|------------------|----------------------------------------|
-| `Get-WinEvent -LogName Security -FilterXPath '*/EventData/Data[@Name="TargetUserName"]="System"' -MaxEvents 1`          | List the logs where account name is system and pick only one event   |
-| "Get-WinEvent -Path C:\Users\THM-Analyst\Desktop\Scenarios\Practice\Filtering.evtx -FilterXPath '*/System/EventID=3' | Sort-Object TimeCreated | Select-Object -First 1 | Format-List *" | Get the last event from sysmon event ID 3
+| Command | Description |
+|--------|-------------|
+| `Get-WinEvent -LogName Security -FilterXPath '*/EventData/Data[@Name="TargetUserName']="System"' -MaxEvents 1` | List one Security log event where account name is "System" |
+| `Get-WinEvent -Path C:\Users\THM-Analyst\Desktop\Scenarios\Practice\Filtering.evtx -FilterXPath '*/System/EventID=3' \| Sort-Object TimeCreated \| Select-Object -First 1 \| Format-List *` | Get the latest Sysmon Event ID 3 from the given log file |
+
 
 
 
