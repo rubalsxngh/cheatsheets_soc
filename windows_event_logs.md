@@ -85,4 +85,18 @@ Get-WinEvent -FilterHashtable @{
 
 
 
+---
 
+### live hunt examples
+
+- check for all the files downloaded using eventID 1 commandline output 
+
+```
+Get-WinEvent -LogName Microsoft-Windows-Sysmon/Operational -FilterXPath '*/System/EventID=1' | Where-Object {$_.Message -like '*explorer*'} |
+>> ForEach-Object {
+>> $xml = [xml]$_.ToXML()
+>> $xml.Event.EventData.Data |
+>> Where-Object { $_.Name -eq 'CommandLine' } |
+>> Select-Object -ExpandProperty "#text"
+>> }
+```
