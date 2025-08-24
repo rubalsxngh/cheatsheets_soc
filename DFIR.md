@@ -54,6 +54,8 @@
 | NTUSER.DAT\Software\Microsoft\Windows\Currentversion\Explorer\UserAssist\{GUID}\Count  | user program execution count |
 | SOFTWARE\Microsoft\Windows Portable Devices\Devices | the device name |
 | WordWheelQuery | check for searches perfomed in file explorer |
+| SYSTEM\CurrentControlSet\Services\LanmanServer\Shares | Shared Folders |
+| Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU | commands executed in run, in HKLM current user |
 
 
 
@@ -87,3 +89,4 @@
 - netstat -ntap
 - /etc/hosts : dns name info
 - /etc/resolv.conf : 
+- /home/user_name/.bash_histroy : check all the command run on the terminal
