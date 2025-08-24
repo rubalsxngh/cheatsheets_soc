@@ -1,1 +1,3 @@
-gpt generate cheatsheet for NOC and SOC tools.
+### SOC Cheatsheet
+
+#### This repository contains quick reference commands for various SOC tools and tasks.
